@@ -65,34 +65,33 @@ If time permits, the following stretch features will be implemented in order of 
 To ensure that we can complete all core features of the application in 1 week, we will aim to complete tasks according to the following timeline:
 
 **Day 1**
-- [ ] Ticket description and due date
-- [ ] Ticket description and due date
-- [ ] Ticket description and due date
+- [ ] View Artists by Genre -- Home Page
+- [ ] Create a playlist generator page component 
+- [ ] Create a search bar component
 
 **Day 2**
-- [ ] Ticket description and due date
-- [ ] Ticket description and due date
-- [ ] Ticket description and due date
+- [ ] Integrate Spotify API /search endpoint
+- [ ] Integrate Spotify API /v1/artists endpoint
+- [ ] Integrate Spotify API /v1/artists/{id}/top-tracks endpoint
 
 **Day 3** (MVP due by the end of the day)
-- [ ] Ticket description and due date
-- [ ] Ticket description and due date
-- [ ] Ticket description and due date
+- [ ] Display search results
+- [ ] Implement a clickable list/grid of artists
+- [ ] Fetch and display top tracks of selected artists
 
 **Day 4**
-- [ ] Ticket description and due date
-- [ ] Ticket description and due date
-- [ ] Ticket description and due date
+- [ ] Work on CSS
+- [ ] Work on toggling light/dark mode
+- [ ] Random name generator for playlist
 
 **Day 5**
-- [ ] Ticket description and due date
-- [ ] Ticket description and due date
-- [ ] Ticket description and due date
+- [ ] Local storage for playlists
+- [ ] Refactor
+- [ ] Debug and Refactor again
 
 ## Wireframes of each page in your application
 
 Below, you can find wireframes for our project. Each wireframe shows a different page of our application as well as the key components of the application. Details such as specific text values or images are intentionally not included:
 
-[Wireframe for page 1]
+https://drive.google.com/file/d/1slRrSllATFUda5Ve5Ry1EhghVxQWwe8I/view
 
-[Wireframe for page 2]
