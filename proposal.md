@@ -1,33 +1,33 @@
-# [Project Name]
+# [RhythMetrix]
 
-Created by [team member], [team member], and [team member].
+Created by Ryan Ramirez and Cindy Nguyen.
 
 ## 🚀 Mission statement
 
-Our application, [app name] is for [target audience]. It allows users to [what it does and why audience would use it]
+Our application, RhythMetrix is for people who want to find new music. It allows users to create a custom playlist based on artists they choose.
 
 ## API & React Router
 
-This application will use the [name of API] API. Below are the documentation and specific endpoints we intend to use and the front-end pages that will use them.
+This application will use the Spotify API. Below are the documentation and specific endpoints we intend to use and the front-end pages that will use them.
 
-- Link to API documentation: [Link goes here]
-- API endpoint #1
-  - Description of endpoint
-  - List of data values used by the endpoint
-- API endpoint #2
-  - Description of endpoint
-  - List of data values used by the endpoint
-- API endpoint #3
-  - Description of endpoint
-  - List of data values used by the endpoint
+- Link to API documentation: (https://developer.spotify.com/documentation/web-api)
+- https://api.spotify.com/v1/artists
+  - This will fetch an array of artists which will be filtered based on their associated genre
+  - For each artist, I want the `id`, `name` and `images`
+- https://api.spotify.com/v1/artists/{id}/top-tracks
+  - This is fetch an object of tracks with their specific infomation
+  - For each track, I want the `name of the track`, `artist`, and `images`
+- https://api.spotify.com/v1/search/?q=${query}&type=artist
+  -   - This will fetch an array of artists based off the search query
+  - For each artist, I want the `id` and `name`
 
-[If your API requires an API key, say so here.]
+This API requires a key which will be fetched through a POST method.
 
 **Example:**
-- https://api.artic.edu/api/v1/artworks
-  - This will fetch an array of artwork objects
-  - For each artwork, I want the `id`, `title`, and `image_id`
-- https://api.artic.edu/api/v1/artworks/{id}
+- https://api.artic.edu/api/v1/artworks](https://api.spotify.com/v1/artists
+  - This will fetch an array of artists which will be filtered based on their associated genre
+  - For each artist, I want the `id` and `images`
+- https://api.artic.edu/api/v1/artworks/{id}](https://api.spotify.com/v1/artists/{id}/top-tracks
   - This will fetch a single artwork object
   - I will use the `id`, `title`, `short_description`, `medium_display`, `place_of_origin` and `image_id`
 - https://api.artic.edu/api/v1/artworks/search?q={query}
@@ -38,9 +38,9 @@ This application will use the [name of API] API. Below are the documentation and
 
 The application will feature the following frontend routes and core features:
 
-* On the `/example` page, users can...
-* On the `/example` page, users can...
-* On the `/example` page, users can...
+* On the `/` page, users can search up an artist or select a genre to find specific artists
+* On the `/artists/` page, users can find artists of that genre and click on the artists to add to their playlist generator
+* On the `/playlist` page, users can view the songs of that will be generated from the artists selected.
 
 **Example:**
 - On the `/artworks` page, users can view a grid of all artwork
@@ -52,8 +52,8 @@ The application will feature the following frontend routes and core features:
 
 If time permits, the following stretch features will be implemented in order of priority:
 
-* Users will be able to...
-* Users will be able to...
+* Users will be able to change the color scheme of the website from light mode to dark mode
+* Users will be able to save and view playlists using local storage
 * Users will be able to...
 
 **Example:**
