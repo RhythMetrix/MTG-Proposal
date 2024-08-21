@@ -1,27 +1,27 @@
-# [RhythMetrix]
+# [RhythMetrix] (we are changing this)
 
 Created by Ryan Ramirez and Cindy Nguyen.
 
 ## 🚀 Mission statement
 
-Our application, RhythMetrix is for people who want to find new music. It allows users to create a custom playlist based on artists they choose.
+Our application, RhythMetrix is for people want to conceptualize a Magic of the Gathering card deck. It allows users to create a custom playing deck based on cards found in the game.
 
 ## API & React Router
 
-This application will use the Spotify API. Below are the documentation and specific endpoints we intend to use and the front-end pages that will use them.
+This application will use the Magic of the Gathering API. Below are the documentation and specific endpoints we intend to use and the front-end pages that will use them.
 
-- Link to API documentation: (https://developer.spotify.com/documentation/web-api)
-- https://api.spotify.com/v1/artists
-  - This will fetch an array of artists which will be filtered based on their associated genre
-  - For each artist, I want the `id`, `name` and `images`
-- https://api.spotify.com/v1/artists/{id}/top-tracks
-  - This is fetch an object of tracks with their specific infomation
-  - For each track, I want the `name of the track`, `artist`, and `images`
-- https://api.spotify.com/v1/search/?q=${query}&type=artist
-  -   - This will fetch an array of artists based off the search query
-  - For each artist, I want the `id` and `name`
+- Link to API documentation: (https://docs.magicthegathering.io/#documentationgetting_started))
+- https://api.magicthegathering.io/v1/cards
+  - This will fetch an array of all the cards available
+  - For each artist, I want the `multiverseid`
+- https://api.magicthegathering.io/v1/cards/:id
+  - This will fetch an indiviual card's information
+  - For each card, I want the `name`, `imageURL`,`originalText` and `originalType`
+- https://api.magicthegathering.io/v1/sets or https://api.magicthegathering.io/v1/types
+  -   - This will fetch an array of exists sets and types
+  - For each fetch, I want to grab a limited number of sets or types to act as form
 
-This API requires a key which will be fetched through a POST method.
+This API does not require a key.
 
 **Example:**
 - https://api.artic.edu/api/v1/artworks](https://api.spotify.com/v1/artists
@@ -38,9 +38,9 @@ This API requires a key which will be fetched through a POST method.
 
 The application will feature the following frontend routes and core features:
 
-* On the `/` page, users can search up an artist or select a genre to find specific artists
-* On the `/artists/` page, users can find artists of that genre and click on the artists to add to their playlist generator
-* On the `/playlist` page, users can view the songs of that will be generated from the artists selected.
+* On the `/` page, users filter through cards through existing sets or types in MotG
+* On the `/card` page, users can find indiviual card information and have the ability to add that card to their 'deck'
+* On the `/deck` page, users can view all the cards that they've added to their deck.
 
 **Example:**
 - On the `/artworks` page, users can view a grid of all artwork
@@ -53,8 +53,10 @@ The application will feature the following frontend routes and core features:
 If time permits, the following stretch features will be implemented in order of priority:
 
 * Users will be able to change the color scheme of the website from light mode to dark mode
-* Users will be able to save and view playlists using local storage
-* Users will be able to...
+* Users deck will be saved with local storage
+* Users will be able to remove cards from their custom deck
+* Users will be able to change the card limit of their deck
+* Users will be able to randomize the cards on the home page
 
 **Example:**
 * Users will be able to save and view favorited artworks using local storage
@@ -65,33 +67,32 @@ If time permits, the following stretch features will be implemented in order of 
 To ensure that we can complete all core features of the application in 1 week, we will aim to complete tasks according to the following timeline:
 
 **Day 1**
-- [ ] View Artists by Genre -- Home Page
-- [ ] Create a playlist generator page component 
-- [ ] Create a search bar component
+- [ ] Create basic page components
+    - Includes: nav bar, side bar for filters (form), showcase for cards
+- [ ] Create boiler plate for fetches and test if fetches work
+      - Cards, Types, and Sets endpoints
 
 **Day 2**
-- [ ] Integrate Spotify API /search endpoint
-- [ ] Integrate Spotify API /v1/artists endpoint
-- [ ] Integrate Spotify API /v1/artists/{id}/top-tracks endpoint
+- [ ] Create useState and useEffect
+- [ ] Integrate fetches
 
 **Day 3** (MVP due by the end of the day)
-- [ ] Display search results
-- [ ] Implement a clickable list/grid of artists
-- [ ] Fetch and display top tracks of selected artists
+- [ ] Implement a list/grid of 100 cards
+- [ ] Implement clickability to cards in grid to show card details
+- [ ] Implement add button to cards 
 
 **Day 4**
 - [ ] Work on CSS
 - [ ] Work on toggling light/dark mode
-- [ ] Random name generator for playlist
+- [ ] Work on button to randomize the cards on the home page
 
 **Day 5**
-- [ ] Local storage for playlists
+- [ ] Local storage for the deck and removability function
 - [ ] Refactor
 - [ ] Debug and Refactor again
 
 ## Wireframes of each page in your application
 
 Below, you can find wireframes for our project. Each wireframe shows a different page of our application as well as the key components of the application. Details such as specific text values or images are intentionally not included:
-
-https://drive.google.com/file/d/1slRrSllATFUda5Ve5Ry1EhghVxQWwe8I/view
+https://drive.google.com/file/d/1B29_aPhtEEyKhHoH8ywb8-MLi7F63Pux/view?usp=sharing
 
