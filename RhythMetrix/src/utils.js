@@ -8,7 +8,7 @@ export const handleFetch = async (url) => {
 
         const isJson = (headers.get('content-type') || '').includes('application/json');
         const responseData = await (isJson ? response.json() : response.text());
-        console.log(responseData)
+        // console.log(responseData)
         return [responseData, null];
     } catch (error) {
         console.warn(error)
