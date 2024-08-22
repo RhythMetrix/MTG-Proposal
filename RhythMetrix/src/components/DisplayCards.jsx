@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { handleFetch } from "../utils";
 
-function DisplayCards() {
+function DisplayCards({card}) {
     const [cards, setCards] = useState([]);
     useEffect(() => {
         const doFetch = async () => {
