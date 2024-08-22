@@ -57,8 +57,19 @@ fieldset {
 }
 
 .showcase {
+
   border: 10px solid black;
-  justify-self: center;
+  /* justify-self: center; */
+  display: flex;
+  margin-top: 10rem;
+  margin-left: 15rem;
+
+}
+
+ul {
+  display: flex;
+  /* width: 100%; */
+  gap: 20px;
 }
 
 .app-container {
