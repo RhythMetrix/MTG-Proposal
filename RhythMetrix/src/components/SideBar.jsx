@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { handleFetch } from "../utils";
+import CardsContext from "../context/CardsContext";
 
 function CardFilter() {
     const [sets, setSets] = useState([]);
-    const [selectedSets, setSelectedSets] = useState([]);
+    const { selectedSet, setSelectedSet, selectedTypes, setSelectedTypes } = useContext(CardsContext);
     const [types, setTypes] = useState([]);
-    const [selectedTypes, setSelectedTypes] = useState([]);
     const [error, setError] = useState('');
 
     useEffect(() => {
@@ -28,7 +28,12 @@ function CardFilter() {
         initialFetch()
     }, [])
     // console.log(sets)
-    console.log(types)
+    // console.log(types)
+    const handleSetChange = (event) => {
+        setSelectedSet(event.target.value);
+        console.log(`set: ${selectedSet}`)
+    };
+
     const handleCheckboxChange = (event) => {
         const { value, checked } = event.target;
         if (checked) {
@@ -50,7 +55,7 @@ function CardFilter() {
                     Sets
                 </p>
                 <label htmlFor="Sets">Choose a set:</label>
-                <select name="Sets" id="Sets">
+                <select name="Sets" id="Sets" value={selectedSet} onChange={handleSetChange}>
                     {sets.map((set) => (
                         <option value={set.name}>{set.name}</option>
                     ))}
@@ -65,7 +70,7 @@ function CardFilter() {
                         <label htmlFor={type}>{type}</label>
                     </div>
                 ))}
-                <button type="submit" className="btn btn-success">Filter</button>
+                {/* <button type="submit" className="btn btn-success">Filter</button> */}
             </form>
         </fieldset >
     )
