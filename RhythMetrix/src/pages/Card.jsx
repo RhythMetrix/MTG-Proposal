@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 import { handleFetch } from "../utils";
-import NavBar from "./NavBar";
+import NavBar from "../components/NavBar";
 
-function Card() {
-    const { cardId } = useParams();
-    const [cardDetails, setCardDetails] = useState(null);
+function Card() { //fetching data on indiviual cards based on their multiverse ID 
+    const { cardId } = useParams(); // we are getting the ID from the URL that handleClick function in CardShowCase takes users to
+    const [cardDetails, setCardDetails] = useState(null); // state for the indiviual card
     const [error, setError] = useState(null);
-    console.log(cardId)
+    console.log(cardId) // just making sure we are getting the correct id
     useEffect(() => {
         const fetchDetails = async () => {
             const [data, error] = await handleFetch(`https://api.magicthegathering.io/v1/cards/${cardId}`);
@@ -17,12 +17,9 @@ function Card() {
         }
         fetchDetails();
     }, [cardId])
-    // console.log(error)
-    // if (error) {
-    //     return <p>Error loading card details: {error}</p>;
-    // }
 
-    if (!cardDetails) {
+
+    if (!cardDetails) { // the API can be slow so this will let users know that the card **will** load
         return <p>Loading...</p>;
     }
     return (

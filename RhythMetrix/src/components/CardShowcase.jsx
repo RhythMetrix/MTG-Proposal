@@ -5,31 +5,28 @@ import { useNavigate } from 'react-router-dom';
 import CardsContext from "../context/CardsContext";
 
 function DisplayCards() {
-    const [allCards, setAllCards] = useState([]);
-    const [randomCards, setRandomCards] = useState([]);
-    const [filteredCards, setFilteredCards] = useState([]);
+    const [allCards, setAllCards] = useState([]); // cards that will be filtered
+    const [randomCards, setRandomCards] = useState([]); // cards that will be displayed on homepage upon first load
+    const [filteredCards, setFilteredCards] = useState([]); // cards that will be displayed through filters
     const { selectedSet, selectedTypes, addToDeck } = useContext(CardsContext);
-    // const [selectedCards, setSelectedCards] = useState([]);
-    const navigate = useNavigate();
-    // console.log(selectedSet)
+    const navigate = useNavigate(); // for navigating between pages
+
+    //Fetching 50 random cards to display at the beginning of a reload
     useEffect(() => {
         const doFetch = async () => {
             const [data, error] = await handleFetch('https://api.magicthegathering.io/v1/cards')
             const limitedCards = [];
-            const trackCmc = new Set();
-            for (let i = 0; i < data.cards.length && limitedCards.length < 50; i++) {
-                let card = data.cards[Math.floor(Math.random() * (data.cards.length))];
+            const trackName = new Set(); //Set is used to catch duplicates within the API
+            for (let i = 0; i < data.cards.length && limitedCards.length < 50; i++) { //loop through data array until our desired number of cards
+                let card = data.cards[Math.floor(Math.random() * (data.cards.length))]; //randomizing the card chosen
                 // console.log(card.name)
-                if (!trackCmc.has(card.name) && card.imageUrl) {
-                    trackCmc.add(card.name)
-                    limitedCards.push(card)
+                if (!trackName.has(card.name) && card.imageUrl) { // making sure the card has an image property
+                    trackName.add(card.name) //add to set to keep track of what cards have been used
+                    limitedCards.push(card) // add to array which will be displayed
                 }
-                // console.log(limitedCards)
             }
-            // const limitedCards = data.cards.slice(0, 15)
-
             if (data) {
-                setRandomCards(limitedCards)
+                setRandomCards(limitedCards) //setting state for the cards that will be displayed
                 setAllCards(data.cards)
                 console.log(allCards)
             }
@@ -42,7 +39,7 @@ function DisplayCards() {
         const applyFilters = () => {
             // console.log(selectedSet)
             // console.log(allCards)
-            if (allCards.length === 0) {
+            if (allCards.length === 0) { //for debugging purposes... to see if the state is being kept so that there are cards to filter through
                 console.log("Skipping filter, no cards available yet.");
                 return;
             }
@@ -60,20 +57,17 @@ function DisplayCards() {
                 }));
             }
 
-            if (selectedTypes.length > 0) {
+            if (selectedTypes.length > 0) { // filtering the cards based on what type is selected
                 result = result.filter(card =>
-                    selectedTypes.some(type => card.types.includes(type) && card.imageUrl))
+                    selectedTypes.some(type => card.types.includes(type) && card.imageUrl)) //users can selected multiple types so we are checking if the card has at least one of those types
             }
             console.log("Filtered Result:", result)
             setFilteredCards(result)
         };
         applyFilters();
     }, [selectedSet, selectedTypes, allCards]);
-    // console.log(`filter: ${filteredCards}`)
-    // console.log(`hi: ${selectedSet, selectedTypes}`)
-    // console.log(`cards: ${cards}`)
-    const handleClick = (cardId) => {
-        // setSelectedCards(card)
+
+    const handleClick = (cardId) => { // takes users to indiviual card page
         navigate(`/card/${cardId}`)
 
     }

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 function NavBar({ title }) {
-    const [theme, setTheme] = useState('light');
+    const [theme, setTheme] = useState('light'); // using state to toggle between lightmode and darkmode
 
     useEffect(() => {
         document.body.className = theme;
