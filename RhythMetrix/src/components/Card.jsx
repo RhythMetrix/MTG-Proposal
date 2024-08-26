@@ -27,6 +27,7 @@ function Card() {
     }
     return (
         <>
+            <NavBar title={`Magic of the Gathering`} />
             <div>
                 <h1>{cardDetails.name}</h1>
                 <img src={cardDetails.imageUrl} alt={cardDetails.name} />

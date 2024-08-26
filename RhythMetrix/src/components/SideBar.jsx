@@ -5,8 +5,23 @@ import CardsContext from "../context/CardsContext";
 function CardFilter() {
     const [sets, setSets] = useState([]);
     const { selectedSet, setSelectedSet, selectedTypes, setSelectedTypes } = useContext(CardsContext);
-    const [types, setTypes] = useState([]);
+    // const [types, setTypes] = useState([]);
     const [error, setError] = useState('');
+    const types = [
+        "Artifact",
+        "Conspiracy",
+        "Creature",
+        "Enchantment",
+        "Instant",
+        "Land",
+        "Phenomenon",
+        "Plane",
+        "Planeswalker",
+        "Scheme",
+        "Sorcery",
+        "Tribal",
+        "Vanguard"
+    ];
 
     useEffect(() => {
         const initialFetch = async () => {
@@ -17,16 +32,16 @@ function CardFilter() {
         }
         initialFetch()
     }, [])
-    useEffect(() => {
-        const initialFetch = async () => {
-            const [data, error] = await handleFetch('https://api.magicthegathering.io/v1/types');
-            const limitedTypes = data.types.slice(0, 10);
-            // console.log(data)
-            if (data) setTypes(limitedTypes)
-            if (error) setError(error)
-        }
-        initialFetch()
-    }, [])
+    // useEffect(() => {
+    //     const initialFetch = async () => {
+    //         const [data, error] = await handleFetch('https://api.magicthegathering.io/v1/types');
+    //         const limitedTypes = data.types.slice(0, 10);
+    //         // console.log(data)
+    //         if (data) setTypes(limitedTypes)
+    //         if (error) setError(error)
+    //     }
+    //     initialFetch()
+    // }, [])
     // console.log(sets)
     // console.log(types)
     const handleSetChange = (event) => {
@@ -57,7 +72,7 @@ function CardFilter() {
                 <label htmlFor="Sets">Choose a set:</label>
                 <select name="Sets" id="Sets" value={selectedSet} onChange={handleSetChange}>
                     {sets.map((set) => (
-                        <option value={set.name}>{set.name}</option>
+                        <option value={set.code}>{set.name}</option>
                     ))}
                 </select>
                 <p> Types </p>

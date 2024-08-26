@@ -1,13 +1,30 @@
+import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+
 function NavBar({ title }) {
+    const [theme, setTheme] = useState('light');
+
+    useEffect(() => {
+        document.body.className = theme;
+    }, [theme]);
+
+    const toggleTheme = () => {
+        setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
+    };
     return (
         <nav>
-            <h1>
-                {title}
-            </h1>
+            <Link to='/'>
+                <h1>
+                    {title}
+                </h1>
+            </Link>
             <div className='nav-container'>
-                <p>
+                <Link to='/deck/'>
                     Deck
-                </p>
+                </Link>
+                <button onClick={toggleTheme}>
+                    Switch to {theme === 'light' ? 'Dark' : 'Light'} Mode
+                </button>
             </div>
         </nav >
     )
