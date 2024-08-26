@@ -1,6 +1,6 @@
-import NavBar from "./NavBar";
-import CardFilter from "./SideBar";
-import DisplayCards from "./CardShowcase";
+import NavBar from "../components/NavBar";
+import CardFilter from "../components/SideBar";
+import DisplayCards from "../components/CardShowcase";
 
 
 function Home() {

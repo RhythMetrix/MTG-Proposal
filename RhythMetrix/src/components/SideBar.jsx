@@ -5,9 +5,8 @@ import CardsContext from "../context/CardsContext";
 function CardFilter() {
     const [sets, setSets] = useState([]);
     const { selectedSet, setSelectedSet, selectedTypes, setSelectedTypes } = useContext(CardsContext);
-    // const [types, setTypes] = useState([]);
     const [error, setError] = useState('');
-    const types = [
+    const types = [ // hand selected types we will allow users to choose from to filter their cards
         "Artifact",
         "Conspiracy",
         "Creature",
@@ -23,33 +22,22 @@ function CardFilter() {
         "Vanguard"
     ];
 
-    useEffect(() => {
+    useEffect(() => { //fetching existing sets from the API that will allow users to filter cards
         const initialFetch = async () => {
             const [data, error] = await handleFetch('https://api.magicthegathering.io/v1/sets');
-            const limitedSets = data.sets.slice(0, 10);
+            const limitedSets = data.sets.slice(0, 10); //limiting to 10 sets
             if (data) setSets(limitedSets)
             if (error) setError(error)
         }
         initialFetch()
     }, [])
-    // useEffect(() => {
-    //     const initialFetch = async () => {
-    //         const [data, error] = await handleFetch('https://api.magicthegathering.io/v1/types');
-    //         const limitedTypes = data.types.slice(0, 10);
-    //         // console.log(data)
-    //         if (data) setTypes(limitedTypes)
-    //         if (error) setError(error)
-    //     }
-    //     initialFetch()
-    // }, [])
-    // console.log(sets)
-    // console.log(types)
-    const handleSetChange = (event) => {
+
+    const handleSetChange = (event) => { // To handle changes to drop down menu --> adjusts state for filtering purposes
         setSelectedSet(event.target.value);
         console.log(`set: ${selectedSet}`)
     };
 
-    const handleCheckboxChange = (event) => {
+    const handleCheckboxChange = (event) => { //Keeps track of what is selected and what is not --> again adjusting state for filtering purposes
         const { value, checked } = event.target;
         if (checked) {
             setSelectedTypes([...selectedTypes, value]);
@@ -57,15 +45,11 @@ function CardFilter() {
             setSelectedTypes(selectedTypes.filter(type => type !== value));
         }
     };
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        console.log('Selected Types:', selectedTypes);
-    }
 
     return (
         <fieldset>
             <legend>Filter the cards</legend>
-            <form onSubmit={handleSubmit}>
+            <form>
                 <p>
                     Sets
                 </p>
@@ -85,7 +69,6 @@ function CardFilter() {
                         <label htmlFor={type}>{type}</label>
                     </div>
                 ))}
-                {/* <button type="submit" className="btn btn-success">Filter</button> */}
             </form>
         </fieldset >
     )
