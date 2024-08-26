@@ -20,7 +20,7 @@ function NavBar({ title }) {
             </Link>
             <div className='nav-container'>
                 <Link to='/deck/'>
-                    Deck
+                    Your Deck
                 </Link>
                 <button onClick={toggleTheme}>
                     Switch to {theme === 'light' ? 'Dark' : 'Light'} Mode
