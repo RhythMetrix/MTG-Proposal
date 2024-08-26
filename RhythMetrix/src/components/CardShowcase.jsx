@@ -17,7 +17,7 @@ function DisplayCards() {
             const [data, error] = await handleFetch('https://api.magicthegathering.io/v1/cards')
             const limitedCards = [];
             const trackCmc = new Set();
-            for (let i = 0; i < data.cards.length && limitedCards.length < 15; i++) {
+            for (let i = 0; i < data.cards.length && limitedCards.length < 50; i++) {
                 let card = data.cards[Math.floor(Math.random() * (data.cards.length))];
                 // console.log(card.name)
                 if (!trackCmc.has(card.name) && card.imageUrl) {
