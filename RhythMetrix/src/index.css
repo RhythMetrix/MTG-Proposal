@@ -12,6 +12,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+*{
+  list-style-type: none;
+}
 
 a {
   font-weight: 500;
@@ -26,7 +29,6 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  /* place-items: center; */
   min-width: 320px;
   min-height: 100vh;
 }
@@ -59,12 +61,10 @@ h1 {
 nav {
   display: flex;
   align-items: center;
+  background-color: green;
   justify-content: space-around;
-  /* gap: 80px; */
   width: 100%;
-  /* padding-top: 0; */
-  /* float: left; */
-  position: sticky;
+  position: fixed;
   padding: 20px;
 }
 
@@ -77,9 +77,7 @@ fieldset {
 }
 
 .showcase {
-
   border: 10px solid black;
-  /* justify-self: center; */
   display: flex;
   margin-top: 10rem;
   margin-left: 15rem;
@@ -90,7 +88,6 @@ ul {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repear(3, auto);
-  /* width: 100%; */
   padding: 20px;
   gap: 20px;
 }
@@ -117,11 +114,6 @@ button:hover {
   border-color: #646cff;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
 #root {
   margin: 0;
   width: 100%;
@@ -145,8 +137,9 @@ button:focus-visible {
 
 
 .card-container {
-  position: relative;
+  /* position: relative; */
   display: inline-block;
+  /* text-align: center; */
 }
 
 .card-container img {
@@ -156,17 +149,22 @@ button:focus-visible {
 }
 
 .add-to-deck {
-  display: none;
-  position: absolute;
+  height: 50px ;
   top: 10px;
   right: 10px;
-  background-color: #28a745;
-  color: white;
   border: none;
   padding: 5px 10px;
   cursor: pointer;
 }
-
-.card-container:hover .add-to-deck {
-  display: block;
+.view-card {
+  height: 50px;
 }
+
+.button-container{
+  display: flex;
+  justify-content: space-between;
+}
+
+/* .card-container:hover .add-to-deck {
+  display: block;
+} */
