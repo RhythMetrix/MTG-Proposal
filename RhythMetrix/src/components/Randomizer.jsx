@@ -2,8 +2,8 @@ import React, { useContext } from 'react';
 import CardsContext from '../context/CardsContext';
 import { handleFetch } from '../utils';
 
-const RandomizerButton = () => {
-    const { setFilteredCards } = useContext(CardsContext);
+const RandomizerButton = () => { //This is the same logic as the intial card load up in Cardshowcase
+    const { setFilteredCards, filteredCards } = useContext(CardsContext);
 
     const fetchRandomCards = async () => {
         const [data, error] = await handleFetch('https://api.magicthegathering.io/v1/cards');
@@ -21,12 +21,13 @@ const RandomizerButton = () => {
                 limitedCards.push(card);
             }
         }
-        setFilteredCards(limitedCards); // Set random cards in filtered cards
+        setFilteredCards([...limitedCards]); // Set random cards in filtered cards
+        console.log(`filteredCards: ${filteredCards}`)
     };
 
     return (
         <button onClick={fetchRandomCards} className="randomize-button">
-            Randomize Cards
+            Get a new set of randomized cards
         </button>
     );
 };
