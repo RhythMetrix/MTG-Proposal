@@ -1,11 +1,13 @@
 import { useState, useEffect, useContext } from "react";
 import { handleFetch } from "../utils";
 import CardsContext from "../context/CardsContext";
+import RandomizerButton from "./Randomizer";
 
 function CardFilter() {
     const [sets, setSets] = useState([]);
-    const { selectedSet, setSelectedSet, selectedTypes, setSelectedTypes } = useContext(CardsContext);
+    const { selectedSet, setSelectedSet, selectedTypes, setSelectedTypes, setFilteredCards } = useContext(CardsContext);
     const [error, setError] = useState('');
+    const [localSet, setLocalSet] = useState(''); // Local state to store selected set before submission
     const types = [ // hand selected types we will allow users to choose from to filter their cards
         "Artifact",
         "Conspiracy",
@@ -33,8 +35,8 @@ function CardFilter() {
     }, [])
 
     const handleSetChange = (event) => { // To handle changes to drop down menu --> adjusts state for filtering purposes
-        setSelectedSet(event.target.value);
-        console.log(`set: ${selectedSet}`)
+        setLocalSet(event.target.value);
+        // console.log(`set: ${selectedSet}`)
     };
 
     const handleCheckboxChange = (event) => { //Keeps track of what is selected and what is not --> again adjusting state for filtering purposes
@@ -46,31 +48,47 @@ function CardFilter() {
         }
     };
 
+    const handleSubmit = async (event) => {
+        event.preventDefault(); // Prevent form from refreshing the page
+        setSelectedSet(localSet); // Update global state with selected set
+        console.log(`set: ${localSet}`);
+        const [data, error] = await handleFetch(`https://api.magicthegathering.io/v1/cards?set=${localSet}`);
+        if (data) {
+            setFilteredCards(data.cards.filter(card => card.set === localSet));
+
+        }
+        if (error) setError(error);
+    };
     return (
-        <fieldset>
-            <legend>Filter the cards</legend>
-            <form>
-                <p>
-                    Sets
-                </p>
-                <label htmlFor="Sets">Choose a set:</label>
-                <select name="Sets" id="Sets" value={selectedSet} onChange={handleSetChange}>
-                    {sets.map((set) => (
-                        <option value={set.code}>{set.name}</option>
+        <>
+
+            <fieldset>
+                <legend>Filter the cards</legend>
+                <RandomizerButton />
+                <form onSubmit={handleSubmit}>
+                    <p>
+                        Sets
+                    </p>
+                    <label htmlFor="Sets">Choose a set:</label>
+                    <select name="Sets" id="Sets" value={selectedSet} onChange={handleSetChange}>
+                        {sets.map((set) => (
+                            <option value={set.code}>{set.name}</option>
+                        ))}
+                    </select>
+                    <button type="submit">Filter by Set</button>
+                    <p> Types </p>
+                    {types.map((type) => (
+                        <div key={type}>
+                            <input type="checkbox"
+                                value={type}
+                                name={type}
+                                onChange={handleCheckboxChange} />
+                            <label htmlFor={type}>{type}</label>
+                        </div>
                     ))}
-                </select>
-                <p> Types </p>
-                {types.map((type) => (
-                    <div key={type}>
-                        <input type="checkbox"
-                            value={type}
-                            name={type}
-                            onChange={handleCheckboxChange} />
-                        <label htmlFor={type}>{type}</label>
-                    </div>
-                ))}
-            </form>
-        </fieldset >
+                </form>
+            </fieldset >
+        </>
     )
 }
 
