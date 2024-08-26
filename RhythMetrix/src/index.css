@@ -31,6 +31,26 @@ body {
   min-height: 100vh;
 }
 
+body.dark {
+  background-color: black;
+  color: white;
+}
+
+body.light {
+  background-color: white;
+  color: black;
+}
+
+button.light {
+  background-color: #f0f0f0;
+  color: black;
+}
+
+button.dark {
+  background-color: #333;
+  color: white;
+}
+
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
@@ -118,4 +138,32 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+
+.card-container {
+  position: relative;
+  display: inline-block;
+}
+
+.card-container img {
+  /* display: block; */
+  width: 100%;
+  height: auto;
+}
+
+.add-to-deck {
+  display: none;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.card-container:hover .add-to-deck {
+  display: block;
 }

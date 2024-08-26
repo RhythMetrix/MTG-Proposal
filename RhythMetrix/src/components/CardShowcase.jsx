@@ -8,7 +8,7 @@ function DisplayCards() {
     const [allCards, setAllCards] = useState([]);
     const [randomCards, setRandomCards] = useState([]);
     const [filteredCards, setFilteredCards] = useState([]);
-    const { selectedSet, selectedTypes } = useContext(CardsContext);
+    const { selectedSet, selectedTypes, addToDeck } = useContext(CardsContext);
     // const [selectedCards, setSelectedCards] = useState([]);
     const navigate = useNavigate();
     // console.log(selectedSet)
@@ -31,6 +31,7 @@ function DisplayCards() {
             if (data) {
                 setRandomCards(limitedCards)
                 setAllCards(data.cards)
+                console.log(allCards)
             }
             if (error) setError(error)
         }
@@ -39,23 +40,37 @@ function DisplayCards() {
 
     useEffect(() => {
         const applyFilters = () => {
-            console.log(selectedSet)
+            // console.log(selectedSet)
             // console.log(allCards)
+            if (allCards.length === 0) {
+                console.log("Skipping filter, no cards available yet.");
+                return;
+            }
             let result = [...allCards]
+            console.log(`Filtering with Selected Set: ${selectedSet}`);
+            if (result.length > 0) {
+                console.log("Sample card set values:", result.map(card => card.set).slice(0, 10)); // Log first 10 sets
+            }
             if (selectedSet) {
-                result = (result.filter(card => card.setName === selectedSet));
+                // console.log(`yellow: ${selectedSet}`)
+                result = (result.filter(card => {
+                    console.log(`hello: ${card.set}`)
+                    card.set === selectedSet
+                    // console.log(`result : ${result}`)
+                }));
             }
 
             if (selectedTypes.length > 0) {
                 result = result.filter(card =>
                     selectedTypes.some(type => card.types.includes(type) && card.imageUrl))
             }
+            console.log("Filtered Result:", result)
             setFilteredCards(result)
         };
         applyFilters();
-    }, [selectedSet, selectedTypes]);
-    console.log(`filter: ${filteredCards}`)
-    console.log(`hi: ${selectedSet, selectedTypes}`)
+    }, [selectedSet, selectedTypes, allCards]);
+    // console.log(`filter: ${filteredCards}`)
+    // console.log(`hi: ${selectedSet, selectedTypes}`)
     // console.log(`cards: ${cards}`)
     const handleClick = (cardId) => {
         // setSelectedCards(card)
@@ -66,9 +81,11 @@ function DisplayCards() {
         <div className='showcase'>
             <ul>
                 {(selectedSet || selectedTypes.length > 0 ? filteredCards : randomCards).map((card) => (
-                    <li key={card.id} onClick={() => handleClick(card.multiverseid)}>
-                        <div>
+                    <li key={card.id}>
+                        <div class="card-container">
                             <img src={card.imageUrl} alt={card.name} />
+                            <button onClick={() => handleClick(card.multiverseid)}> View Card</button>
+                            <button class="add-to-deck" onClick={() => addToDeck(card)}>Add to Deck</button>
                         </div>
                     </li>
                 ))}
