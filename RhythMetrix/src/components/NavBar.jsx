@@ -15,7 +15,7 @@ function NavBar({ title }) {
         <nav>
             <Link to='/'>
                 <h1>
-                    {title}
+                    Magic: The Gathering Deck Builder
                 </h1>
             </Link>
             <div className='nav-container'>

@@ -16,9 +16,14 @@
   list-style-type: none;
 }
 
+h1 {
+  padding: 10px;
+  margin: 0;
+  
+}
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #000000;
   text-decoration: inherit;
 }
 
@@ -64,6 +69,7 @@ nav {
   background-color: green;
   justify-content: space-around;
   width: 100%;
+  margin: 0;
   position: fixed;
   padding: 20px;
 }
@@ -78,7 +84,7 @@ fieldset {
 
 .showcase {
   border: 10px solid black;
-  display: flex;
+  /* display: flex; */
   margin-top: 10rem;
   margin-left: 15rem;
 
