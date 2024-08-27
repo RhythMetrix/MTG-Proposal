@@ -6,6 +6,7 @@ import addIconDark from '../assets/addIconDark.webp'
 import addIconLight from '../assets/addIconLight.webp'
 import viewIconDark from '../assets/viewIconDark.webp'
 import viewIconLight from '../assets/viewIconLight.webp'
+import theme from './NavBar'
 
 import CardsContext from "../context/CardsContext";
 
@@ -113,7 +114,7 @@ function DisplayCards() {
                         <div class="card-container">
                             <img src={card.imageUrl} alt={card.name} />
                             <div className ="button-container">
-                                <input type="image" src = {viewIconLight} class="view-card" onClick={() => handleClick(card.multiverseid)}></input>
+                                <input type="image" src = {theme === 'Dark' ? viewIconDark : viewIconLight} class="view-card" onClick={() => handleClick(card.multiverseid)}></input>
                                 <input type="image" src={addIconLight}  class="add-to-deck" onClick={() => addToDeck(card)} ></input>
                             </div>
                         </div>
