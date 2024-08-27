@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #292727;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -21,6 +21,9 @@ h1 {
   margin: 0;
   
 }
+body.light h1{
+  color: black;
+}
 a {
   font-weight: 500;
   color: #000000;
@@ -34,18 +37,16 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  min-width: 320px;
-  min-height: 100vh;
 }
 
 body.dark {
-  background-color: black;
-  color: white;
+  background-image: url(./assets/backgroundDark.png);
+  background-size: 100%;
 }
 
 body.light {
-  background-color: white;
-  color: black;
+  background-image: url(./assets/backgroundLight.png);
+  background-size: 100%;
 }
 
 button.light {
@@ -66,14 +67,19 @@ h1 {
 nav {
   display: flex;
   align-items: center;
-  background-color: green;
   justify-content: space-around;
   width: 100%;
-  margin: 0;
+  margin-bottom: 0;
   position: fixed;
   padding: 20px;
 }
 
+body.light nav{
+  background-color: #376b31;
+}
+body.dark nav{
+  background-color: #5067ac;
+}
 fieldset {
   height: 100%;
   width: 160px;
@@ -83,7 +89,7 @@ fieldset {
 }
 
 .showcase {
-  border: 10px solid black;
+  /* border: 10px solid black; */
   /* display: flex; */
   margin-top: 10rem;
   margin-left: 15rem;
@@ -96,6 +102,10 @@ ul {
   grid-template-rows: repear(3, auto);
   padding: 20px;
   gap: 20px;
+}
+
+li:hover {
+  transform: scale(1.05);
 }
 
 .app-container {
@@ -120,11 +130,11 @@ button:hover {
   border-color: #646cff;
 }
 
-#root {
+/* #root {
   margin: 0;
   width: 100%;
 
-}
+} */
 
 @media (prefers-color-scheme: light) {
   :root {

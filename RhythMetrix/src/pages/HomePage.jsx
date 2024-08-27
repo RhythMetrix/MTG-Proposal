@@ -7,8 +7,10 @@ function Home() {
     return (
         <>
             <NavBar title='Magic of the Gathering' />
-            <CardFilter />
-            <DisplayCards />
+            <div className= "bottom-section">
+                <CardFilter />
+                <DisplayCards />
+            </div>
         </>
     )
 }

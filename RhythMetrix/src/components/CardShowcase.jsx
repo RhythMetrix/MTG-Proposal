@@ -6,7 +6,6 @@ import addIconDark from '../assets/addIconDark.webp'
 import addIconLight from '../assets/addIconLight.webp'
 import viewIconDark from '../assets/viewIconDark.webp'
 import viewIconLight from '../assets/viewIconLight.webp'
-import theme from './NavBar'
 
 import CardsContext from "../context/CardsContext";
 
@@ -14,7 +13,7 @@ function DisplayCards() {
     const [allCards, setAllCards] = useState([]); // cards that will be filtered
     const [randomCards, setRandomCards] = useState([]); // cards that will be displayed on homepage upon first load
     // const [filteredCards, setFilteredCards] = useState([]); // cards that will be displayed through filters
-    const { selectedSet, selectedTypes, addToDeck, filteredCards, setFilteredCards } = useContext(CardsContext);
+    const { selectedSet, selectedTypes, addToDeck, filteredCards, setFilteredCards, theme } = useContext(CardsContext);
     const navigate = useNavigate(); // for navigating between pages
 
     //Fetching 50 random cards to display at the beginning of a reload
@@ -78,8 +77,8 @@ function DisplayCards() {
                         <div class="card-container">
                             <img src={card.imageUrl} alt={card.name} />
                             <div className ="button-container">
-                                <input type="image" src = {theme === 'Dark' ? viewIconDark : viewIconLight} class="view-card" onClick={() => handleClick(card.multiverseid)}></input>
-                                <input type="image" src={addIconLight}  class="add-to-deck" onClick={() => addToDeck(card)} ></input>
+                                <input type="image" src = {theme === 'dark' ? viewIconDark : viewIconLight} class="view-card" onClick={() => handleClick(card.multiverseid)}></input>
+                                <input type="image" src={theme === 'dark' ? addIconDark : addIconLight}  class="add-to-deck" onClick={() => addToDeck(card)} ></input>
                             </div>
                         </div>
                     </li>

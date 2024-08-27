@@ -6,7 +6,7 @@ const CardsProvider = ({ children }) => {
     const [selectedTypes, setSelectedTypes] = useState([]);
     const [deck, setDeck] = useState([]);
     const [filteredCards, setFilteredCards] = useState([]); // cards that will be displayed through filters
-
+    const [theme, setTheme] = useState('light');
 
     const addToDeck = (card) => {
         setDeck(prevDeck => [...prevDeck, card]);
@@ -15,7 +15,7 @@ const CardsProvider = ({ children }) => {
 
 
     return (
-        <CardsContext.Provider value={{ selectedSet, setSelectedSet, selectedTypes, setSelectedTypes, deck, addToDeck, filteredCards, setFilteredCards }}>
+        <CardsContext.Provider value={{ selectedSet, setSelectedSet, selectedTypes, setSelectedTypes, deck, addToDeck, filteredCards, setFilteredCards, theme, setTheme }}>
             {children}
         </CardsContext.Provider>
     );
