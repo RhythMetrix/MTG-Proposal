@@ -12,15 +12,17 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-*{
+
+* {
   list-style-type: none;
 }
 
 h1 {
   padding: 10px;
   margin: 0;
-  
+
 }
+
 a {
   font-weight: 500;
   color: #000000;
@@ -155,22 +157,97 @@ button:hover {
 }
 
 .add-to-deck {
-  height: 50px ;
+  height: 50px;
   top: 10px;
   right: 10px;
   border: none;
   padding: 5px 10px;
   cursor: pointer;
 }
+
 .view-card {
   height: 50px;
 }
 
-.button-container{
+.button-container {
   display: flex;
   justify-content: space-between;
 }
 
+.deckName {
+  display: flex;
+  justify-content: center;
+  margin-top: 10rem;
+}
+
+/* .deck img:hover {
+  width: 20rem;
+} */
+
+/* 
+.deck {
+  display: flex;
+  flex-wrap: wrap;
+} */
+
 /* .card-container:hover .add-to-deck {
   display: block;
 } */
+.container {
+  /* width: 100%; */
+  /* min-height: 100vh; */
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  margin-top: 8rem;
+}
+
+.text span {
+  font-size: 60px;
+  display: inline-block;
+  text-align: center;
+  width: 60px;
+  text-transform: uppercase;
+  position: relative;
+  color: #111;
+  z-index: 5;
+}
+
+.text span::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background-color: #d4af37;
+  z-index: -1;
+  box-shadow: 0 5px 5px #111;
+}
+
+.text:hover span::before {
+  animation: fillBg 1s ease forwards;
+  animation-delay: calc(100ms * var(--i));
+}
+
+@keyframes fillBg {
+  0% {
+    width: 0%;
+  }
+
+  100% {
+    width: 100%;
+    transform: rotate(calc(15deg * var(--i)));
+  }
+}
+
+.minus {
+  height: 50px;
+  top: 10px;
+  right: 10px;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
