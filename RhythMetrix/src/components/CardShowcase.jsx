@@ -22,7 +22,7 @@ function DisplayCards() {
         const [data, error] = await handleFetch('https://api.magicthegathering.io/v1/cards')
         const limitedCards = [];
         const trackName = new Set(); //Set is used to catch duplicates within the API
-        for (let i = 0; i < data.cards.length && limitedCards.length < 50; i++) { //loop through data array until our desired number of cards
+        for (let i = 0; i < data.cards.length && limitedCards.length <= 53; i++) { //loop through data array until our desired number of cards
             let card = data.cards[Math.floor(Math.random() * (data.cards.length))]; //randomizing the card chosen
             // console.log(card.name)
             if (!trackName.has(card.name) && card.imageUrl) { // making sure the card has an image property
@@ -31,46 +31,19 @@ function DisplayCards() {
             }
         }
         if (data) {
-            setRandomCards(limitedCards) //setting state for the cards that will be displayed
-            // setAllCards(data.cards)
-            setFilteredCards(data.cards)
+            setRandomCards(limitedCards) //setting state for the cards that will be displayed upon first load up
+            setFilteredCards(limitedCards)
             console.log(allCards)
         }
         if (error) setError(error)
     };
     useEffect(() => {
-        // const doFetch = async () => {
-        //     const [data, error] = await handleFetch('https://api.magicthegathering.io/v1/cards')
-        //     const limitedCards = [];
-        //     const trackName = new Set(); //Set is used to catch duplicates within the API
-        //     for (let i = 0; i < data.cards.length && limitedCards.length < 50; i++) { //loop through data array until our desired number of cards
-        //         let card = data.cards[Math.floor(Math.random() * (data.cards.length))]; //randomizing the card chosen
-        //         // console.log(card.name)
-        //         if (!trackName.has(card.name) && card.imageUrl) { // making sure the card has an image property
-        //             trackName.add(card.name) //add to set to keep track of what cards have been used
-        //             limitedCards.push(card) // add to array which will be displayed
-        //         }
-        //     }
-        //     if (data) {
-        //         setRandomCards(limitedCards) //setting state for the cards that will be displayed
-        //         // setAllCards(data.cards)
-        //         setFilteredCards(data.cards)
-        //         console.log(allCards)
-        //     }
-        //     if (error) setError(error)
-        // }
         fetchRandomCards();
     }, [])
 
     useEffect(() => {
         const applyFilters = () => {
-            // console.log(selectedSet)
-            // console.log(allCards)
-            // if (allCards.length === 0) { //for debugging purposes... to see if the state is being kept so that there are cards to filter through
-            //     console.log("Skipping filter, no cards available yet.");
-            //     return;
-            // }
-            if (filteredCards.length === 0) { // If no cards available to filter
+            if (filteredCards.length === 0) {
                 return;
             }
             let result = [...filteredCards];
@@ -82,25 +55,16 @@ function DisplayCards() {
                     selectedTypes.some(type => card.types.includes(type)) && card.imageUrl
                 );
             }
+            if (!result) {
+                console.log('No cards match this filter')
+            }
             setFilteredCards(result);
-            //     let result = [...filteredCards] || [...allCards]
-            //     console.log(`Filtering with Selected Set: ${selectedSet}`);
-            //     if (result.length > 0) {
-            //         console.log("Sample card set values:", result.map(card => card.set).slice(0, 10)); // Log first 10 sets
-            //     }
-
-            //     if (selectedTypes.length > 0) { // filtering the cards based on what type is selected
-            //         result = result.filter(card =>
-            //             selectedTypes.some(type => card.types.includes(type) && card.imageUrl)) //users can selected multiple types so we are checking if the card has at least one of those types
-            //     }
-            //     console.log("Filtered Result:", result)
-            //     setFilteredCards(result)
         };
         if (selectedSet || selectedTypes.length > 0) {
             applyFilters();
             // applyFilters();
         }
-    }, [selectedSet, selectedTypes, filteredCards, setFilteredCards]);
+    }, [selectedSet, selectedTypes, setFilteredCards]);
 
     const handleClick = (cardId) => { // takes users to indiviual card page
         navigate(`/card/${cardId}`)
