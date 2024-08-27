@@ -6,7 +6,7 @@ const CardsProvider = ({ children }) => {
     const [selectedTypes, setSelectedTypes] = useState([]);
     const [deck, setDeck] = useState([]);
     const [filteredCards, setFilteredCards] = useState([]); // cards that will be displayed through filters
-    const [theme, setTheme] = useState('light');
+    const [theme, setTheme] = useState('light'); // using state to toggle between lightmode and darkmode
 
     const addToDeck = (card) => {
         setDeck(prevDeck => [...prevDeck, card]);

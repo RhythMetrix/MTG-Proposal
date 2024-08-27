@@ -6,6 +6,7 @@ function NavBar({ title }) {
     const {theme, setTheme} = useContext(CardsContext); // using state to toggle between lightmode and darkmode
 
     useEffect(() => {
+        // document.nav.className = theme;
         document.body.className = theme;
     }, [theme]);
 
