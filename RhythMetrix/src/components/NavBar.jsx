@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext,  } from "react";
 import CardsContext from "../context/CardsContext";
 
 function NavBar({ title }) {
-    // const [theme, setTheme] = useState('light'); // using state to toggle between lightmode and darkmode
-    const { theme, setTheme } = useContext(CardsContext)
+    const {theme, setTheme} = useContext(CardsContext); // using state to toggle between lightmode and darkmode
+
     useEffect(() => {
         // document.nav.className = theme;
         document.body.className = theme;
