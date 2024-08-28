@@ -38,16 +38,22 @@ a:hover {
   color: #535bf2;
 }
 
+/* html, body{
+  height: 100%;
+  
+} */
+
 body {
   margin: 0;
   display: flex;
+  min-height: 100vh;
 }
 
 body.dark {
   background-image: url(./assets/backgroundDark.png);
   background-size: 100%;
 }
-
+ 
 body.light {
   background-image: url(./assets/backgroundLight.png);
   background-size: 100%;
