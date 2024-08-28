@@ -7,12 +7,12 @@ import viewIconDark from '../assets/viewIconDark.webp'
 import viewIconLight from '../assets/viewIconLight.webp'
 
 function DeckPage() {
-    const { deck, theme } = useContext(CardsContext); //importing the state that is holding all of the 'chosen' cards
+    const { deck, theme, handleClick } = useContext(CardsContext); //importing the state that is holding all of the 'chosen' cards
 
     return (
         <>
             <NavBar title='Magic of the Gathering' />
-            <div>
+            <div className='deck'>
                 <div className="container">
                     <div className="text">
                         <span style={{ '--i': -4, color: theme === 'dark' ? '#ffffff' : '#000000' }}>Y</span>
@@ -33,7 +33,7 @@ function DeckPage() {
                             <img className='added-card' src={card.imageUrl} alt={card.name} />
                             {/* <p>{card.name}</p> */}
                             <div className="button-container">
-                                <img className='view-card' src={theme === 'dark' ? viewIconDark : viewIconLight} alt="Button to view cards" />
+                                <img className='view-card' src={theme === 'dark' ? viewIconDark : viewIconLight} alt="Button to view cards" onClick={() => handleClick(card.multiverseid)} />
                                 <img className='minus' src={theme === 'dark' ? lightmode : darkMode} alt="Button to remove cards" />
                             </div>
                         </li>

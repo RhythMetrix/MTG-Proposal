@@ -13,7 +13,7 @@ function DisplayCards() {
     const [allCards, setAllCards] = useState([]); // cards that will be filtered
     const [randomCards, setRandomCards] = useState([]); // cards that will be displayed on homepage upon first load
     // const [filteredCards, setFilteredCards] = useState([]); // cards that will be displayed through filters
-    const { selectedSet, selectedTypes, addToDeck, filteredCards, setFilteredCards, theme } = useContext(CardsContext);
+    const { selectedSet, selectedTypes, addToDeck, filteredCards, setFilteredCards, theme, handleClick } = useContext(CardsContext);
     const navigate = useNavigate(); // for navigating between pages
 
     //Fetching 50 random cards to display at the beginning of a reload
@@ -65,10 +65,10 @@ function DisplayCards() {
         }
     }, [selectedSet, selectedTypes, setFilteredCards]);
 
-    const handleClick = (cardId) => { // takes users to indiviual card page
-        navigate(`/card/${cardId}`)
+    // const handleClick = (cardId) => { // takes users to indiviual card page
+    //     navigate(`/card/${cardId}`)
 
-    }
+    // }
     return (
         <div className='showcase'>
             <ul>
@@ -76,9 +76,9 @@ function DisplayCards() {
                     <li key={card.id}>
                         <div class="card-container">
                             <img src={card.imageUrl} alt={card.name} />
-                            <div className ="button-container">
-                                <input type="image" src = {theme === 'dark' ? viewIconDark : viewIconLight} class="view-card" onClick={() => handleClick(card.multiverseid)}></input>
-                                <input type="image" src={theme === 'dark' ? addIconDark : addIconLight}  class="add-to-deck" onClick={() => addToDeck(card)} ></input>
+                            <div className="button-container">
+                                <input type="image" src={theme === 'dark' ? viewIconDark : viewIconLight} class="view-card" onClick={() => handleClick(card.multiverseid)}></input>
+                                <input type="image" src={theme === 'dark' ? addIconDark : addIconLight} class="add-to-deck" onClick={() => addToDeck(card)} ></input>
                             </div>
                         </div>
                     </li>
