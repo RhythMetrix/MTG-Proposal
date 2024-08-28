@@ -11,3 +11,6 @@ As a group, answer the questions below. For each of these questions, consider sp
 **Write your reflection using markdown**.
 
 ## Reflection Response
+
+The role of the scrum board for our group's organization helped us get kick started by providing a clear path of priorities. Delegation of tasks was slightly difficult because there was a lot of unconfidence about React. It would've been ideal to delegate roles based off of strength but in this case, we had to delegate tasks for completion.
+Our team created a timeline by clearly listing the priorities of each tasks, keeping the MVP always towards the top and leaving strech and styling for the end to ensure that our application functions. This helped us create a functioning application in time.
