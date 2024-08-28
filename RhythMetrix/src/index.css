@@ -52,11 +52,19 @@ body {
 body.dark {
   background-image: url(./assets/backgroundDark.png);
   background-size: 100%;
+  -webkit-transition: background 1s;
+  -moz-transition: background 1s;
+  -o-transition: background 1s;
+  transition: background 1s;
 }
  
 body.light {
   background-image: url(./assets/backgroundLight.png);
   background-size: 100%;
+  -webkit-transition: background 1s;
+  -moz-transition: background 1s;
+  -o-transition: background 1s;
+  transition: background 1s;
 }
 
 button.light {
@@ -75,23 +83,68 @@ h1 {
 }
 
 nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  width: 100%;
-  margin-bottom: 0;
-  position: fixed;
-  padding: 20px;
+  position: fixed; /* Keeps the nav at the top of the viewport */
+  top: 0; /* Aligns the top of the nav with the top of the viewport */
+  width: 100%; /* Makes the nav full width */
+  z-index: 1000; /* Ensures nav stays on top of other content */
 }
 
-body.light nav {
-  background-color: #376b31;
+.nav-icons {
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+  margin: 60px;
+  padding: 0;
+  position: relative; /* Allows use of z-index to overlay on the image */
+  z-index: 1; /* Ensures icons/content appear above the image */
+  transform: translateY(-50px);
+}
+
+.nav-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateX(300px);
+}
+
+.nav-icons input{
+  width: 5%;
+  height: 50%;
+  padding-left: 40px;
+}
+
+nav img {
+  display: block; /* Ensures image takes up full line */
+  width: 100vw; /* Full width of the viewport */
+  height: 200px; /* Fixed height for the image */
+  position: absolute; /* Positions the image relative to nav */
+  bottom: 0; /* Places the image at the bottom of the nav element */
+  left: 0; /* Aligns the image with the left edge */
+  z-index: 0; /* Image is below the content */
+  transform: translateY(-50px);
+}
+
+
+/* body.light nav {
+  -webkit-transition: background 1s;
+  -moz-transition: background 1s;
+  -o-transition: background 1s;
+  transition: background 1s;
 }
 
 body.dark nav {
-  background-color: #5067ac;
-}
+  -webkit-transition: background 1s;
+  -moz-transition: background 1s;
+  -o-transition: background 1s;
+  transition: background 1s;
+} */
 
+body.dark .bottom-section{
+  color: rgb(255, 255, 255);
+}
+body.light .bottom-section{
+  color: rgb(0, 0, 0);
+}
 fieldset {
   height: 100%;
   width: 160px;

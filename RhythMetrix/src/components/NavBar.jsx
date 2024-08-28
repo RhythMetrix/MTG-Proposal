@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect, useContext,  } from "react";
 import CardsContext from "../context/CardsContext";
-import navDark from "../assets/navDark.webp"
+import navDark from "../assets/navDark.webp";
+import navLight from "../assets/navLight.webp";
+import MagicLogo from "../assets/MagicLogo.webp"
+import lightModeIcon from "../assets/lightModeIcon.webp";
+import darkModeIcon from "../assets/darkModeIcon.webp";
 
 
 
@@ -18,18 +22,21 @@ function NavBar({ title }) {
     };
     return (
         <nav>
-            <Link to='/'>
-                <img src="../assets/images.jpg"></img>
-            </Link>
-            <div className='nav-container'>
-                <Link to='/deck/'>
-                    Your Deck
+            <div className='nav-icons'>
+                <Link to='/'>
+                    <h1>MAGIC: DECK BUILDER</h1>
                 </Link>
-                <button onClick={toggleTheme}>
-                    Switch to {theme === 'light' ? 'Dark' : 'Light'} Mode
-                </button>
+                <div className='nav-container'>
+                    <Link to='/deck/'>
+                        Your Deck
+                    </Link>
+                    <input type="image" src={theme === "dark" ? lightModeIcon : darkModeIcon} onClick={toggleTheme}></input>
+                    {/* <button onClick={toggleTheme}>
+                        <img src={theme === "dark" ? lightModeIcon : darkModeIcon}></img>
+                    </button> */}
+                </div>
             </div>
-            {/* <img src={theme === 'dark' ? navDark : navLight}></img> */}
+            <img src={theme === 'dark' ? navDark : navLight}></img>
         </nav >
     )
 }
