@@ -73,6 +73,10 @@ nav {
   position: fixed;
   padding: 20px;
 }
+nav img{
+  height: 180px;
+  width: 100vw;
+}
 
 body.light nav{
   background-color: #376b31;
