@@ -1,10 +1,10 @@
-# [RhythMetrix]
+# MTG - Deck Maker
 
 Created by Ryan Ramirez and Cindy Nguyen.
 
 ## 🚀 Mission statement
 
-Our application, RhythMetrix is for people want to conceptualize a Magic of the Gathering card deck. It allows users to create a custom playing deck based on cards found in the game.
+Our application, MTG - Deck Maker is for people want to conceptualize a Magic of the Gathering card deck. It allows users to create a custom playing deck based on cards found in the game.
 
 ## API & React Router
 
