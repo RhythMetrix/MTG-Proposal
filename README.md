@@ -4,7 +4,10 @@ Created by Ryan Ramirez and Cindy Nguyen.
 
 ## 🚀 Mission statement
 
-Our application, MTG - Deck Maker is for people want to conceptualize a Magic of the Gathering card deck. It allows users to create a custom playing deck based on cards found in the game.
+Our application, MTG - Deck Maker is for people want to conceptualize a Magic of the Gathering card deck. It allows users to create a custom playing deck based on cards found in the game. Check out our [video demo](https://youtu.be/HXq6UHnPob8?si=zQkrJYzBvD387LMp)!
+
+![Screenshot 2025-01-13 165420](https://github.com/user-attachments/assets/27a12acd-1b02-4521-ace2-88f8b69afb7d)
+
 
 ## API & React Router
 
